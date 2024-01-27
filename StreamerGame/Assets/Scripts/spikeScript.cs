@@ -36,8 +36,6 @@ public class spikeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string aha = "abz";
-        print(String.Join(" ", aha.ToUpper().ToList()));
     }
     void newSpike()
     {
