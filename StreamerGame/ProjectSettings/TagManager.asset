@@ -8,6 +8,7 @@ TagManager:
   - Snake
   - Tail
   - Wall
+  - QTE
   layers:
   - Default
   - TransparentFX

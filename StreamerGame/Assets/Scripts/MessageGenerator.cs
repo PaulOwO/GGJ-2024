@@ -56,16 +56,17 @@ public class MessageGenerator : MonoBehaviour
         }
     }
 
-    public void CreateQTE(QTEScript qTEScript)
+    public string CreateQTE(QTEScript qTEScript)
     {
         string alphabet = "abcdefghijklmnopqrstuvwxyz";
+        string re = null;
         for (int i = 0; i < 3; i++)
         {
             int rand = UnityEngine.Random.Range(0, 26);
             qTEScript.inputs.Add(alphabet[rand].ToString());
-
+            re += alphabet[rand].ToString();
         }
-        
+        return re;
     }
 
     public string takeFillerMessage()

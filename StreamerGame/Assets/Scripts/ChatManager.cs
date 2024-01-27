@@ -17,12 +17,19 @@ public class ChatManager : MonoBehaviour
     public GameObject QTEPrefab;
 
     private List<GameObject> messages = new List<GameObject>();
+    private List<string> qteMessages = new List<string>();
 
     [SerializeField] MessageGenerator messageGenerator;
 
     // Start is called before the first frame update
     void Start()
     {
+        qteMessages.Add("I would LOVE if you could do that for me");
+        qteMessages.Add("PLZ do this");
+        qteMessages.Add("->");
+        qteMessages.Add("");
+        qteMessages.Add("That's crazy but did you consider another choice ? I would love if you do, also do this");
+        qteMessages.Add("I will donate lots of money !!!!!! only if you know :]");
 
     }
 
@@ -132,13 +139,15 @@ public class ChatManager : MonoBehaviour
             tmp.transform.SetParent(transform, false);
             tmp.transform.localScale = new Vector3(1, 1, 1);
 
+            int rando = Random.Range(0, qteMessages.Count);
+
             TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
             QTEScript qTEScript = tmp.GetComponent<QTEScript>();
-            messageGenerator.CreateQTE(qTEScript);
+            string qteInputs = messageGenerator.CreateQTE(qTEScript);
             string username = messageGenerator.CreateUsername();
             ; UIText.SetText("<color=" + Randomcolor() + ">"
                 + username.Replace("\n", "").Replace("\r", "")
-                + "</color>" + ": " + "this is a q t e");
+                + "</color>" + ": " + qteMessages[rando] + " " + String.Join(" ", qteInputs.ToUpper().ToList()));
 
             messages.Insert(0, tmp);
         }
@@ -178,7 +187,7 @@ public class ChatManager : MonoBehaviour
     private string Randomcolor()
     {
         string color = null;
-        int rand = Random.Range(0, 7);
+        int rand = Random.Range(0, 6);
         if (rand == 0)
         {
             color = "purple";
@@ -200,10 +209,6 @@ public class ChatManager : MonoBehaviour
             color = "orange";
         }
         if (rand == 5)
-        {
-            color = "white";
-        }
-        if (rand == 6)
         {
             color = "blue";
         }
