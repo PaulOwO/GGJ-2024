@@ -17,7 +17,7 @@ public class ChatManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
@@ -25,9 +25,9 @@ public class ChatManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           NewMessage();
+            NewMessage();
+            UpdateChat();
         }
-        UpdateChat();
     }
 
     private void UpdateChat()
@@ -37,22 +37,28 @@ public class ChatManager : MonoBehaviour
         {
             foreach (GameObject message in messages)
             {
-                
-                RectTransform transform = message.GetComponent<RectTransform>();
-                transform.anchorMin = Vector2.zero;
-                transform.anchorMax = Vector2.right;
-                 currentheight += transform.rect.height;
-                 if (message == messages[0])
-                 {
-                    currentheight -= transform.rect.height/2; 
-                 }
-                 transform.anchoredPosition = new Vector2(0, currentheight);
-                print(transform.rect.height);
 
+                /* RectTransform transform = message.GetComponent<RectTransform>();
+                 transform.anchorMin = Vector2.zero;
+                 transform.anchorMax = Vector2.right;
+                  currentheight += transform.rect.height;
+                  if (message == messages[0])
+                  {
+                     currentheight -= transform.rect.height/2; 
+                  }
+                  transform.anchoredPosition = new Vector2(0, currentheight);
+                 print(transform.rect.height);*/
 
-                /*RectTransform transform = message.GetComponent<RectTransform>();
-                currentheight = transform.position.y ;
-                transform.anchoredPosition = new Vector2(0, currentheight + messages[messages.Count - 1].GetComponent<RectTransform>().rect.height);*/
+                if (message != messages[0])
+                {
+                    RectTransform transform = message.GetComponent<RectTransform>();
+                    currentheight = transform.anchoredPosition.y;
+                    transform.anchoredPosition = new Vector2(0, currentheight + messages[0].GetComponent<TextMeshProUGUI>().preferredHeight);
+                }
+                else
+                {
+                    message.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, (float)message.GetComponent<TextMeshProUGUI>().preferredHeight / 2);
+                }
             }
         }
         if (messages.Count > 10)
@@ -68,16 +74,16 @@ public class ChatManager : MonoBehaviour
         tmp = null;
         int rand = Random.Range(0, 2);
         tmp = Instantiate(MessagePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        TextMeshProUGUI arg = tmp.GetComponent<TextMeshProUGUI>();
 
         if (rand == 1)
         {
-            TextMeshProUGUI arg = tmp.GetComponent<TextMeshProUGUI>();
             arg.SetText("arg ggggggggggggggggggggggggggggggggggg ggggggggggggggggggggggggggggggggggg gggggggggggggggggggggggggggg ggggggggg");
         }
-        
+
         tmp.transform.SetParent(transform, false);
         tmp.transform.localScale = new Vector3(1, 1, 1);
-        messages.Insert(0,tmp);
-        
+        messages.Insert(0, tmp);
+
     }
 }
