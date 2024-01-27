@@ -15,6 +15,7 @@ public class MessageGenerator : MonoBehaviour
 
     public String generatedName = null;
 
+
     void Start()
     {
         readNameCSV();
@@ -44,7 +45,7 @@ public class MessageGenerator : MonoBehaviour
         }
     }
 
-    string CreateUsername()
+    public string CreateUsername()
     {
         System.Random rnd = new System.Random();
         if (rnd.Next(1000) <= 1)

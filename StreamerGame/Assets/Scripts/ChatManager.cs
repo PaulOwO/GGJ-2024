@@ -14,6 +14,9 @@ public class ChatManager : MonoBehaviour
     public GameObject MessagePrefab;
 
     private List<GameObject> messages = new List<GameObject>();
+
+    [SerializeField] MessageGenerator messageGenerator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,18 +75,85 @@ public class ChatManager : MonoBehaviour
     private void NewMessage()
     {
         tmp = null;
-        int rand = Random.Range(0, 2);
         tmp = Instantiate(MessagePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        TextMeshProUGUI arg = tmp.GetComponent<TextMeshProUGUI>();
 
-        if (rand == 1)
-        {
-            arg.SetText("arg ggggggggggggggggggggggggggggggggggg ggggggggggggggggggggggggggggggggggg gggggggggggggggggggggggggggg ggggggggg");
-        }
+        TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
+        string username = messageGenerator.CreateUsername();
+       // UIText.color = Color.green;
+;        UIText.SetText("<color=" + Randomcolor() + ">" 
+    + username.Replace("\n", "").Replace("\r", "") 
+    + "</color>" + ": this is a random msg") ;
 
         tmp.transform.SetParent(transform, false);
         tmp.transform.localScale = new Vector3(1, 1, 1);
         messages.Insert(0, tmp);
 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private string Randomcolor()
+    {
+        string color = null;
+        int rand = Random.Range(0, 7);
+        if (rand == 0)
+        {
+            color = "purple";
+        }
+        if (rand == 1)
+        {
+            color = "yellow";
+        }
+        if (rand == 2)
+        {
+            color = "red";
+        }
+        if (rand == 3)
+        {
+            color = "green";
+        }
+        if (rand == 4)
+        {
+            color = "orange";
+        }
+        if (rand == 5)
+        {
+            color = "white";
+        }
+        if (rand == 6)
+        {
+            color = "blue";
+        }
+
+        return color;
     }
 }
