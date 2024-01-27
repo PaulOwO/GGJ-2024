@@ -8,6 +8,7 @@ TagManager:
   - Snake
   - Tail
   - Wall
+  - Spike
   layers:
   - Default
   - TransparentFX
