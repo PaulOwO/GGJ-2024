@@ -6,8 +6,10 @@ using UnityEngine;
 public class snakeScript : MonoBehaviour
 {
     private Vector2 _direction = Vector2.right;
+    private Vector2 _lastDirection = Vector2.right;
     private List<Transform> _parts;
     public Transform bodyPrefab;
+    public Transform holder;
 
     void Start()
     {
@@ -18,19 +20,19 @@ public class snakeScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && _direction != Vector2.down)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && _lastDirection != Vector2.down)
         {
             _direction = Vector2.up;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && _direction != Vector2.up)
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && _lastDirection != Vector2.up)
         {
             _direction = Vector2.down;
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && _direction != Vector2.right)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && _lastDirection != Vector2.right)
         {
             _direction = Vector2.left;
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && _direction != Vector2.left)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && _lastDirection != Vector2.left)
         {
             _direction = Vector2.right;
         }
@@ -50,14 +52,15 @@ public class snakeScript : MonoBehaviour
                 Mathf.Round(this.transform.position.x) + _direction.x,
                 Mathf.Round(this.transform.position.y) + _direction.y
             );
+            _lastDirection = _direction;
 
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.06f);
         }
     }
 
     private void Eat()
     {
-        Transform part = Instantiate(this.bodyPrefab);
+        Transform part = Instantiate(this.bodyPrefab,holder);
         part.position = _parts[_parts.Count - 1].position;
         _parts.Add(part);
     }
@@ -68,7 +71,7 @@ public class snakeScript : MonoBehaviour
         {
             Eat();
         }
-        else if (collision.tag == "Tail" && collision.gameObject.transform != _parts[1])
+        else if ((collision.tag == "Tail" && collision.gameObject.transform != _parts[1]) || collision.tag == "Wall")
         {
             Clear();
         }
@@ -80,9 +83,9 @@ public class snakeScript : MonoBehaviour
         {
             Destroy(_parts[i].gameObject);
         }
-
         _parts.Clear();
         _parts.Add(this.transform);
+        _direction = Vector2.right;
         this.transform.position = Vector2.zero;
     }
 }
