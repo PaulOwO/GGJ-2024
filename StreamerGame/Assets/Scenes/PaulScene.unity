@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 251, y: 43}
-  m_SizeDelta: {x: -1037.8462, y: -207.8086}
+  m_AnchoredPosition: {x: 13, y: -23}
+  m_SizeDelta: {x: -344.53, y: -232.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &343025741
 MonoBehaviour:
@@ -212,7 +212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MessagePrefab: {fileID: 1431637803082044309, guid: ca37d9d3fa959ca4190e7f692d251865, type: 3}
-  MessagePrefab1: {fileID: 1340788275222503744, guid: e8082d503eedfad449484f710e9f1446, type: 3}
 --- !u!1 &449048297
 GameObject:
   m_ObjectHideFlags: 0
