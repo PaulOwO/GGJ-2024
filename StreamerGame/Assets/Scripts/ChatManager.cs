@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using TMPro;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -12,6 +14,7 @@ using Random = UnityEngine.Random;
 public class ChatManager : MonoBehaviour
 {
     public GameObject MessagePrefab;
+    public GameObject QTEPrefab;
 
     private List<GameObject> messages = new List<GameObject>();
 
@@ -31,6 +34,21 @@ public class ChatManager : MonoBehaviour
             NewMessage();
             UpdateChat();
         }
+
+        foreach (GameObject message in messages.ToList())
+        {
+            if (message.tag == "QTE")
+            {
+                if (message.GetComponent<QTEScript>().isDone)
+                {
+
+                    TextMeshProUGUI text = message.GetComponent<TextMeshProUGUI>();
+                    text.outlineWidth = 0.2f;
+                    text.outlineColor = Color.green;
+                }
+            }
+
+        }
     }
 
     private void UpdateChat()
@@ -38,7 +56,8 @@ public class ChatManager : MonoBehaviour
         float currentheight = 0;
         if (messages.Count > 0)
         {
-            foreach (GameObject message in messages)
+            int i = 0;
+            foreach (GameObject message in messages.ToList())
             {
 
                 /* RectTransform transform = message.GetComponent<RectTransform>();
@@ -62,31 +81,65 @@ public class ChatManager : MonoBehaviour
                 {
                     message.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, (float)message.GetComponent<TextMeshProUGUI>().preferredHeight / 2);
                 }
+
+                if (i > 10) //destruction when to much
+                {
+                    if (message.tag == "QTE")
+                    {
+                        // missed a chat : red
+                        //health loss
+
+                        GameObject tmp = message;
+                        messages.RemoveAt(i);
+                        Destroy(tmp);
+                    }
+                    else
+                    {
+                        GameObject tmp = message;
+                        messages.RemoveAt(i);
+                        Destroy(tmp);
+                    }
+                }
+                i++;
             }
-        }
-        if (messages.Count > 10)
-        {
-            GameObject tmp = messages[10];
-            messages.RemoveAt(10);
-            Destroy(tmp);
         }
     }
     GameObject tmp;
     private void NewMessage()
     {
-        tmp = null;
-        tmp = Instantiate(MessagePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        int rand = Random.Range(0, 2);
+        if (rand == 0)
+        {
 
-        TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
-        string username = messageGenerator.CreateUsername();
-;        UIText.SetText("<color=" + Randomcolor() + ">" 
-    + username.Replace("\n", "").Replace("\r", "") 
-    + "</color>"+ ": " + messageGenerator.takeFillerMessage());
+            tmp = null;
+            tmp = Instantiate(MessagePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            tmp.transform.SetParent(transform, false);
+            tmp.transform.localScale = new Vector3(1, 1, 1);
 
-        tmp.transform.SetParent(transform, false);
-        tmp.transform.localScale = new Vector3(1, 1, 1);
-        messages.Insert(0, tmp);
+            TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
+            string username = messageGenerator.CreateUsername();
+            ; UIText.SetText("<color=" + Randomcolor() + ">"
+                + username.Replace("\n", "").Replace("\r", "")
+                + "</color>" + ": " + messageGenerator.takeFillerMessage());
 
+            messages.Insert(0, tmp);
+
+        }
+        if(rand == 1)
+        {
+            tmp = null;
+            tmp = Instantiate(QTEPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            tmp.transform.SetParent(transform, false);
+            tmp.transform.localScale = new Vector3(1, 1, 1);
+
+            TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
+            string username = messageGenerator.CreateUsername();
+            ; UIText.SetText("<color=" + Randomcolor() + ">"
+                + username.Replace("\n", "").Replace("\r", "")
+                + "</color>" + ": " + "this is a q t e");
+
+            messages.Insert(0, tmp);
+        }
     }
 
 

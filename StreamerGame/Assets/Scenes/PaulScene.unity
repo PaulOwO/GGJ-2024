@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MessagePrefab: {fileID: 1431637803082044309, guid: ca37d9d3fa959ca4190e7f692d251865, type: 3}
+  QTEPrefab: {fileID: 8261062631488886310, guid: e8082d503eedfad449484f710e9f1446, type: 3}
   messageGenerator: {fileID: 39279425}
 --- !u!1 &449048297
 GameObject:
