@@ -79,7 +79,6 @@ public class ChatManager : MonoBehaviour
 
         TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
         string username = messageGenerator.CreateUsername();
-       // UIText.color = Color.green;
 ;        UIText.SetText("<color=" + Randomcolor() + ">" 
     + username.Replace("\n", "").Replace("\r", "") 
     + "</color>"+ ": " + messageGenerator.takeFillerMessage());
