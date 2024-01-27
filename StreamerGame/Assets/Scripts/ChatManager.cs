@@ -133,6 +133,8 @@ public class ChatManager : MonoBehaviour
             tmp.transform.localScale = new Vector3(1, 1, 1);
 
             TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
+            QTEScript qTEScript = tmp.GetComponent<QTEScript>();
+            messageGenerator.CreateQTE(qTEScript);
             string username = messageGenerator.CreateUsername();
             ; UIText.SetText("<color=" + Randomcolor() + ">"
                 + username.Replace("\n", "").Replace("\r", "")

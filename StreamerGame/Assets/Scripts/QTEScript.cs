@@ -15,9 +15,6 @@ public class QTEScript : MonoBehaviour
 
     void Start()
     {
-        inputs.Add("d");
-        inputs.Add("z");
-        inputs.Add("e");
     }
 
     // Update is called once per frame
@@ -38,7 +35,7 @@ public class QTEScript : MonoBehaviour
             Check3 = true;
         }
 
-        if (Check1 && Check2 && Check3)
+        if (Check1 && Check2 && Check3 && isDone == false)
         {
             isDone = true;
         }

@@ -56,6 +56,18 @@ public class MessageGenerator : MonoBehaviour
         }
     }
 
+    public void CreateQTE(QTEScript qTEScript)
+    {
+        string alphabet = "abcdefghijklmnopqrstuvwxyz";
+        for (int i = 0; i < 3; i++)
+        {
+            int rand = UnityEngine.Random.Range(0, 26);
+            qTEScript.inputs.Add(alphabet[rand].ToString());
+
+        }
+        
+    }
+
     public string takeFillerMessage()
     {
         System.Random rnd = new System.Random();
