@@ -9,9 +9,14 @@ using UnityEngine;
 public class MessageGenerator : MonoBehaviour
 {
     public TextAsset fileData;
+
+    public TextAsset fillerMessageData;
+
     List<String> nameStarts = new List<String> { };
     List<String> nameEnds = new List<String> { };
     List<String> nameNumbers = new List<String> { };
+
+    List<String> fillerMessage = new List<String> { };
 
     public String generatedName = null;
 
@@ -19,7 +24,13 @@ public class MessageGenerator : MonoBehaviour
     void Start()
     {
         readNameCSV();
+        readFillerMessageCSV();
         generatedName = CreateUsername();
+    }
+
+    void readFillerMessageCSV()
+    {
+        fillerMessage = fillerMessageData.text.Split("\n", StringSplitOptions.None).ToList<String>();
     }
     void readNameCSV()
     {
@@ -43,6 +54,13 @@ public class MessageGenerator : MonoBehaviour
                 nameNumbers.Add(nameParts[2]);
             }
         }
+    }
+
+    public string takeFillerMessage()
+    {
+        System.Random rnd = new System.Random();
+        string rand = fillerMessage[rnd.Next(fillerMessage.Count - 1)];
+        return rand;
     }
 
     public string CreateUsername()

@@ -82,7 +82,7 @@ public class ChatManager : MonoBehaviour
        // UIText.color = Color.green;
 ;        UIText.SetText("<color=" + Randomcolor() + ">" 
     + username.Replace("\n", "").Replace("\r", "") 
-    + "</color>" + ": this is a random msg") ;
+    + "</color>"+ ": " + messageGenerator.takeFillerMessage());
 
         tmp.transform.SetParent(transform, false);
         tmp.transform.localScale = new Vector3(1, 1, 1);
