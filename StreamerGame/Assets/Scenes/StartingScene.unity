@@ -402,8 +402,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -191.99, y: 114}
-  m_SizeDelta: {x: 1433.14, y: 55.86}
+  m_AnchoredPosition: {x: -18.735, y: 127}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &203893369
 MonoBehaviour:
@@ -439,7 +439,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play games for period of times to make your follower count go up
+  m_text: Play games with arrow keys for period of times to make your follower count
+    go up
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -542,7 +543,7 @@ Transform:
   m_GameObject: {fileID: 242045959}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 635, y: 114, z: -9719.999}
+  m_LocalPosition: {x: 800, y: -12, z: -9719.999}
   m_LocalScale: {x: 40, y: 35.42857, z: 114.28571}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1373,7 +1374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &864712107
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1677,7 +1678,7 @@ Transform:
   m_GameObject: {fileID: 1209117185}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 740.87994, y: 151.19998, z: -9719.999}
+  m_LocalPosition: {x: 899, y: 41, z: -9719.999}
   m_LocalScale: {x: -21.599998, y: -21.599998, z: -21.599998}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1971,7 +1972,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -382.11, y: -117}
-  m_SizeDelta: {x: 1077.91, y: 55.86}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1736519123
 MonoBehaviour:
