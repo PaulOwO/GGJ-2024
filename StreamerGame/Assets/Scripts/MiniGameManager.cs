@@ -5,7 +5,7 @@ using UnityEngine;
 public class MiniGameManager : MonoBehaviour
 {
     public List<GameObject> miniGames;
-    private string currentGame = "";
+    public string currentGame = ""; 
     private bool snakeStarted = false;
     // Start is called before the first frame update
     void Start()

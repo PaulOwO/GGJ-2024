@@ -787,7 +787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7855405740080615592}
   m_Layer: 0
-  m_Name: SnakeHolder
+  m_Name: Long Serpent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

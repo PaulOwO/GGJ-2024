@@ -1479,7 +1479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6293499866489296580}
   m_Layer: 0
-  m_Name: platformerHolder
+  m_Name: Jumping Guy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

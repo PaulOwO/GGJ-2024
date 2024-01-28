@@ -18,6 +18,8 @@ public class ChatManager : MonoBehaviour
     public GameObject banPrefab;
     public GameObject changeGamePrefab;
 
+    public MiniGameManager miniGameManager;
+
     public int followers = 1;
 
     private List<GameObject> messages = new List<GameObject>();
@@ -146,16 +148,18 @@ public class ChatManager : MonoBehaviour
                     }
                     else if (message.tag == "Change")
                     {
-                        if ( false) //l'objectif nest pas accompli
+                        if (miniGameManager.currentGame == message.GetComponent<ChangeMessageScript>().game) //l'objectif nest pas accompli
                         {
-                            gameManager.drama += 1;
-                            print("didn't change the game");
+                            GameObject tmp = message;
+                            messages.RemoveAt(i);
+                            Destroy(tmp);
+                            return;
                         }
 
-                        GameObject tmp = message;
-                        messages.RemoveAt(i);
-                        Destroy(tmp);
-                        return;
+                        gameManager.drama += 1;
+                        print("didn't change the game");
+
+                       
                     }
                     else
                     {
@@ -233,7 +237,25 @@ public class ChatManager : MonoBehaviour
             tmp.transform.SetParent(transform, false);
             tmp.transform.localScale = new Vector3(1, 1, 1);
 
-            int randomi = Random.Range(0, 3); //add le fait de ne pas pouvoir tomber sur le jeux actuelle
+            int randomi = Random.Range(0, 3); //add le fait de ne pas pouvoir tomber sur le jeux actuelle  // serpent, flapy bird, mario
+            int v;
+            if (miniGameManager.currentGame == gameName[0])
+            {
+                v = 0;
+            }
+            if (miniGameManager.currentGame == gameName[1])
+            {
+                v = 1;
+            }
+            else
+            {
+                v = 2;
+            }
+            while (randomi == v) 
+            {
+                randomi = Random.Range(0, 3);
+            }
+
 
             TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
             string username = messageGenerator.CreateUsername();
@@ -241,6 +263,7 @@ public class ChatManager : MonoBehaviour
                 + username.Replace("\n", "").Replace("\r", "") + "</color>"
                 + ": " + messageGenerator.takeChangeMessage().Replace("\n", "").Replace("\r", "")+ " " + gameName[randomi]) ;
 
+            tmp.GetComponent<ChangeMessageScript>().game = gameName[randomi];
             messages.Insert(0, tmp);
         }
     }
