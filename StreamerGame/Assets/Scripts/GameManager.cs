@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
             }
             if (numberOfBan == 0)
             {
+                chatManager.GetComponent<ChatManager>().viewerCount = (int)Math.Round((float)chatManager.GetComponent<ChatManager>().viewerCount * 0.9f);
                 drama += 1;
-                print("no one to ban");
             }
         }
     }

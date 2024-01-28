@@ -6,6 +6,7 @@ using UnityEngine;
 public class QTEScript : MonoBehaviour
 {
     public bool isDone = false;
+    public bool pointsAwarded = false;
     public List<string> inputs = new List<string>();
     
     private bool Check1 = false;

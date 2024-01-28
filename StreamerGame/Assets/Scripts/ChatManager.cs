@@ -37,6 +37,7 @@ public class ChatManager : MonoBehaviour
     private List<string> gameName = new List<string>();
 
     private int messagesToSend = 0;
+    ChatManager chatManager;
 
     // Start is called before the first frame update
     void Start()
@@ -96,7 +97,12 @@ public class ChatManager : MonoBehaviour
             {
                 if (message.GetComponent<QTEScript>().isDone)
                 {
-
+                    if (!message.GetComponent<QTEScript>().pointsAwarded)
+                    {
+                        chatManager = GameObject.FindObjectOfType<ChatManager>();
+                        chatManager.viewerCount = (int)Math.Round((float)chatManager.viewerCount * 1.1f);
+                        message.GetComponent<QTEScript>().pointsAwarded = true;
+                    }
                     TextMeshProUGUI text = message.GetComponent<TextMeshProUGUI>();
                     text.outlineWidth = 0.2f;
                     text.outlineColor = Color.green;
