@@ -306,7 +306,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.493
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1789,6 +1789,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MessageGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 6747909397697330650, guid: 1f6d55a3f8e4130469d677d3be2c7458, type: 3}
+      propertyPath: fileData
+      value: 
+      objectReference: {fileID: 4900000, guid: 19691e16475bb4e46a08318abff10870, type: 3}
+    - target: {fileID: 6747909397697330650, guid: 1f6d55a3f8e4130469d677d3be2c7458, type: 3}
+      propertyPath: QTEMessageData
+      value: 
+      objectReference: {fileID: 4900000, guid: 5fa150c58c949464cb28a8d6820e6305, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
