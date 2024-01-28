@@ -10,6 +10,7 @@ using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using static GameManager;
 
 public class ChatManager : MonoBehaviour
 {

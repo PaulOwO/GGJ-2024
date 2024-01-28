@@ -7,12 +7,21 @@ public class snakeScript : MonoBehaviour
 {
     private Vector2 _direction = Vector2.right;
     private Vector2 _lastDirection = Vector2.right;
-    private List<Transform> _parts;
+    private List<Transform> _parts = new List<Transform>();
     public Transform bodyPrefab;
     public Transform holder;
 
     void Start()
     {
+        _parts = new List<Transform>();
+        _parts.Add(this.transform);
+        StartCoroutine("Move");
+    }
+
+    private void OnRestart()
+    {
+        Clear();
+        StopCoroutine("Move");
         _parts = new List<Transform>();
         _parts.Add(this.transform);
         StartCoroutine("Move");
@@ -79,9 +88,12 @@ public class snakeScript : MonoBehaviour
 
     private void Clear()
     {
-        for (int i = 1; i < _parts.Count; i++)
+        if( _parts.Count > 0 )
         {
-            Destroy(_parts[i].gameObject);
+            for (int i = 1; i < _parts.Count; i++)
+            {
+                Destroy(_parts[i].gameObject);
+            }
         }
         _parts.Clear();
         _parts.Add(this.transform);

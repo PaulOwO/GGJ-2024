@@ -47,6 +47,14 @@ public class guyScript : MonoBehaviour
         lastVelocity = rigidbody.velocity;
     }
 
+    private void OnRestart()
+    {
+        foreach (var spike in spikes.ToList())
+        {
+            spike.SendMessage("newSpike");
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Spike")

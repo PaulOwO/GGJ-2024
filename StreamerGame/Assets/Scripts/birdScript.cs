@@ -16,21 +16,28 @@ public class birdScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow)){
-            rigidBody.velocity = new Vector2(0,jumpVelocity);
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            rigidBody.velocity = new Vector2(0, jumpVelocity);
         }
         transform.rotation = Quaternion.Euler(0, 0, rigidBody.velocity.y);
+    }
+
+    private void OnRestart()
+    {
+        transform.position = Vector2.zero;
+        foreach (var pipe in Pipes)
+        {
+            pipe.SendMessage("StartReset");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         transform.position = Vector2.zero;
-        transform.rotation = new Quaternion(0f,0f,0f,0f);
-        rigidBody.velocity = new Vector2(0,0);
-        foreach (var pipe in Pipes)
-        {
-            pipe.SendMessage("StartReset");
-        }
+        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+        rigidBody.velocity = new Vector2(0, 0);
+        OnRestart();
     }
 
 }
