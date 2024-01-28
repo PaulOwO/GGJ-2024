@@ -61,9 +61,9 @@ public class guyScript : MonoBehaviour
         if (collision.gameObject.tag == "Spike")
         {
             chatManager = GameObject.FindObjectOfType<ChatManager>();
-            if (chatManager.viewerCount > 5)
+            if (chatManager.viewerCount > 50)
             {
-                chatManager.viewerCount -= 5;
+                chatManager.viewerCount -= 50;
             }
             else
             {

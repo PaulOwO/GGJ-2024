@@ -24,7 +24,7 @@ public class pipeScript : MonoBehaviour
         if(this.transform.position.x <= -11 && !hasGivenPoints)
         {
             chatManager = GameObject.FindObjectOfType<ChatManager>();
-            chatManager.viewerCount += 10;
+            chatManager.viewerCount += 100;
             hasGivenPoints = true;
 
         }

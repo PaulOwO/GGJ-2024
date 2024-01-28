@@ -39,9 +39,9 @@ public class birdScript : MonoBehaviour
         transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         rigidBody.velocity = new Vector2(0, 0);
         chatManager = GameObject.FindObjectOfType<ChatManager>();
-        if (chatManager.viewerCount > 5)
+        if (chatManager.viewerCount > 50)
         {
-            chatManager.viewerCount -= 5;
+            chatManager.viewerCount -= 50;
         }
         else
         {

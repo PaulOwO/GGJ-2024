@@ -74,7 +74,7 @@ public class snakeScript : MonoBehaviour
         part.position = _parts[_parts.Count - 1].position;
         _parts.Add(part);
         chatManager = GameObject.FindObjectOfType<ChatManager>();
-        chatManager.viewerCount += 10;
+        chatManager.viewerCount += 100;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -86,9 +86,9 @@ public class snakeScript : MonoBehaviour
         else if ((collision.tag == "Tail" && collision.gameObject.transform != _parts[1]) || collision.tag == "Wall")
         {
             chatManager = GameObject.FindObjectOfType<ChatManager>();
-            if (chatManager.viewerCount > 5)
+            if (chatManager.viewerCount > 50)
             {
-                chatManager.viewerCount -= 5;
+                chatManager.viewerCount -= 50;
             } else
             {
                 chatManager.viewerCount = 1;

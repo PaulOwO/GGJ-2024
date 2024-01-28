@@ -29,7 +29,7 @@ public class spikeScript : MonoBehaviour
         if (this.transform.position.x <= (-28 - this.GetComponent<PolygonCollider2D>().bounds.size.x))
         {
             chatManager = GameObject.FindObjectOfType<ChatManager>();
-            chatManager.viewerCount += 10;
+            chatManager.viewerCount += 100;
             newSpike();
         }
         moveSpike();
