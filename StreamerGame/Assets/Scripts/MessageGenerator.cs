@@ -32,7 +32,6 @@ public class MessageGenerator : MonoBehaviour
 
     public String generatedName = null;
 
-
     void Start()
     {
         readNameCSV();
