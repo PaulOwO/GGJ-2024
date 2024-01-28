@@ -23,15 +23,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (drama > 2)
+        if (drama > 2)
         {
             miniGameManager.GetComponent<MiniGameManager>().SendMessage("StopAllGames");
             chatManager.GetComponent<ChatManager>().SendMessage("StopMsgs");
             gameOverUI.SetActive(true);
-        }*/
+        }
 
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             numberOfBan = 0;
             array = FindObjectsOfType<banMessageScript>();

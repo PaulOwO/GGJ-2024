@@ -10,6 +10,7 @@ public class banMessageScript : MonoBehaviour
     {
         TextMeshProUGUI text = GetComponent<TextMeshProUGUI>();
         text.text = "<i> This user was banned from your channel </i>";
+        text.fontSize = 18;
         text.color = Color.red;
         isBanned = true;
     }

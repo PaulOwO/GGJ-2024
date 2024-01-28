@@ -90,13 +90,6 @@ public class ChatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            NewMessage();
-            UpdateChat();
-        }
-
-
         foreach (GameObject message in messages.ToList())
         {
             if (message != null && message.tag == "QTE")
