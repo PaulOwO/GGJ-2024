@@ -66,6 +66,7 @@ MonoBehaviour:
   miniGameManager: {fileID: 0}
   followers: 1
   area: {fileID: 0}
+  viewerCount: 0
   messageGenerator: {fileID: 0}
 --- !u!114 &2148638608203807833
 MonoBehaviour:
