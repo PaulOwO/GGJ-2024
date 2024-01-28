@@ -45,8 +45,8 @@ public class ChatManager : MonoBehaviour
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameName.Add("Long Serpent");
-        gameName.Add("Jumping Guy");
         gameName.Add("Flying Bird");
+        gameName.Add("Jumping Guy");
         StartCoroutine("GetChats");
     }
 

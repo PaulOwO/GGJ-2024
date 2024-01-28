@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000030518, y: -0.0000019073}
-  m_SizeDelta: {x: 1575.82, y: 181.37}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &35500994
 MonoBehaviour:
@@ -195,10 +195,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Chat speed goes up with your follower count
-
-
-    Obtain 1.000.000 followers'
+  m_text: "Gain percentage of \nfollower when making chats laugh\n\nChat speed goes
+    up with your follower count\n\nObtain 1.000.000 followers"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -998,7 +996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &476880390
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1229,7 +1227,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -322, y: -50}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1239.54, y: 573.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749892615
 MonoBehaviour:
@@ -1281,11 +1279,9 @@ MonoBehaviour:
     -Change Game:
     Play the game your community wants
 
-    You should be playing it when their message
-    disappear
 
-
-    If you ignore your chat 3 times you loose'
+    If you ignore your chat 3 times you
+    loose'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2209,7 +2205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1974614313
 RectTransform:
   m_ObjectHideFlags: 0
