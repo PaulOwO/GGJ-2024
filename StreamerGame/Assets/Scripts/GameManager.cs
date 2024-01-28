@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject miniGameManager;
     public GameObject chatManager;
+   
     // Start is called before the first frame update
     void Start()
     {
