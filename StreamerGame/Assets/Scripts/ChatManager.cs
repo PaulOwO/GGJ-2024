@@ -33,9 +33,9 @@ public class ChatManager : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
-        gameName.Add("Trigonometrie Dash");
-        gameName.Add("Floppy Crow");
-        gameName.Add("Worm");
+        gameName.Add("Jumping Guy");
+        gameName.Add("Fliyng Bird");
+        gameName.Add("Long Serpent");
     }
 
     // Update is called once per frame
