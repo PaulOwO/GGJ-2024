@@ -214,11 +214,11 @@ public class ChatManager : MonoBehaviour
                         if (!message.GetComponent<ChangeMessageScript>().isDone) //l'objectif nest pas accompli
                         {
                             gameManager.drama += 1;
-                            GameObject tmp = message;
-                            messages.Remove(message);
-                            Destroy(tmp);
-                            return;
                         }
+                        GameObject tmp = message;
+                        messages.Remove(message);
+                        Destroy(tmp);
+                        return;
                     }
                     else
                     {
