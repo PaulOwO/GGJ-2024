@@ -16,6 +16,8 @@ public class MessageGenerator : MonoBehaviour
 
     public TextAsset QTEMessageData;
 
+    public TextAsset changeGameMessageData;
+
     List<String> nameStarts = new List<String> { };
     List<String> nameEnds = new List<String> { };
     List<String> nameNumbers = new List<String> { };
@@ -26,6 +28,8 @@ public class MessageGenerator : MonoBehaviour
 
     List<string> qteMessages = new List<string>();
 
+    List<string> changeGameMessages = new List<string>();
+
     public String generatedName = null;
 
 
@@ -35,12 +39,18 @@ public class MessageGenerator : MonoBehaviour
         readFillerMessageCSV();
         readBanMessageCSV();
         readQTEMessageCSV();
+        readChangeMessageCSV();
         generatedName = CreateUsername();
     }
 
     void readFillerMessageCSV()
     {
         fillerMessage = fillerMessageData.text.Split("\n", StringSplitOptions.None).ToList<String>();
+    }
+
+    void readChangeMessageCSV()
+    {
+        changeGameMessages = changeGameMessageData.text.Split("\n", StringSplitOptions.None).ToList<String>();
     }
 
     void readQTEMessageCSV()
@@ -101,6 +111,13 @@ public class MessageGenerator : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         string rand = qteMessages[rnd.Next(qteMessages.Count - 1)];
+        return rand;
+    }
+
+    public string takeChangeMessage()
+    {
+        System.Random rnd = new System.Random();
+        string rand = changeGameMessages[rnd.Next(changeGameMessages.Count - 1)];
         return rand;
     }
 

@@ -16,6 +16,7 @@ public class ChatManager : MonoBehaviour
     public GameObject MessagePrefab;
     public GameObject QTEPrefab;
     public GameObject banPrefab;
+    public GameObject changeGamePrefab;
 
     private List<GameObject> messages = new List<GameObject>();
     private List<string> qteMessages = new List<string>();
@@ -24,10 +25,15 @@ public class ChatManager : MonoBehaviour
 
     private GameManager gameManager;
 
+    private List<string> gameName = new List<string>();
+
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameName.Add("Trigonometrie Dash");
+        gameName.Add("Floppy Crow");
+        gameName.Add("Worm");
     }
 
     // Update is called once per frame
@@ -117,6 +123,19 @@ public class ChatManager : MonoBehaviour
                         Destroy(tmp);
                         return;
                     }
+                    else if (message.tag == "Change")
+                    {
+                        if ( false) //l'objectif nest pas accompli
+                        {
+                            gameManager.drama += 1;
+                            print("didn't change the game");
+                        }
+
+                        GameObject tmp = message;
+                        messages.RemoveAt(i);
+                        Destroy(tmp);
+                        return;
+                    }
                     else
                     {
                         GameObject tmp = message;
@@ -131,7 +150,7 @@ public class ChatManager : MonoBehaviour
     GameObject tmp;
     private void NewMessage()
     {
-        int rand = Random.Range(0, 3);
+        int rand = Random.Range(0, 4);
         if (rand == 0)
         {
 
@@ -182,6 +201,24 @@ public class ChatManager : MonoBehaviour
             UIText.SetText("<color=" + Randomcolor() + ">"
                 + username.Replace("\n", "").Replace("\r", "") + "</color>" 
                 + ": " + messageGenerator.takeBanMessage());
+
+            messages.Insert(0, tmp);
+        }
+
+        if (rand == 3)
+        {
+            tmp = null;
+            tmp = Instantiate(changeGamePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            tmp.transform.SetParent(transform, false);
+            tmp.transform.localScale = new Vector3(1, 1, 1);
+
+            int randomi = Random.Range(0, 3); //add le fait de ne pas pouvoir tomber sur le jeux actuelle
+
+            TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
+            string username = messageGenerator.CreateUsername();
+            UIText.SetText("<color=" + Randomcolor() + ">"
+                + username.Replace("\n", "").Replace("\r", "") + "</color>"
+                + ": " + messageGenerator.takeChangeMessage().Replace("\n", "").Replace("\r", "")+ " " + gameName[randomi]) ;
 
             messages.Insert(0, tmp);
         }
