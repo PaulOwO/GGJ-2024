@@ -24,7 +24,7 @@ public class ChatManager : MonoBehaviour
 
     public Collider2D area;
 
-    public int viewerCount = 100000;
+    public int viewerCount = 1;
 
     private List<GameObject> messages = new List<GameObject>();
     private List<string> qteMessages = new List<string>();
@@ -34,8 +34,6 @@ public class ChatManager : MonoBehaviour
     private GameManager gameManager;
 
     private List<string> gameName = new List<string>();
-
-    private float timeRemaining;
 
     private int messagesToSend = 0;
 
@@ -91,7 +89,6 @@ public class ChatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        viewerCount += 10;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             NewMessage();
