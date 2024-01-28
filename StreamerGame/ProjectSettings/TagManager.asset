@@ -9,6 +9,8 @@ TagManager:
   - Tail
   - Wall
   - Spike
+  - Ban
+  - QTE
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,7 @@ public class ChatManager : MonoBehaviour
 {
     public GameObject MessagePrefab;
     public GameObject QTEPrefab;
+    public GameObject banPrefab;
 
     private List<GameObject> messages = new List<GameObject>();
     private List<string> qteMessages = new List<string>();
@@ -100,6 +101,15 @@ public class ChatManager : MonoBehaviour
                         messages.RemoveAt(i);
                         Destroy(tmp);
                     }
+                    else if (message.tag == "Ban")
+                    {
+                        // missed a chat : red
+                        //health loss
+
+                        GameObject tmp = message;
+                        messages.RemoveAt(i);
+                        Destroy(tmp);
+                    }
                     else
                     {
                         GameObject tmp = message;
@@ -114,7 +124,7 @@ public class ChatManager : MonoBehaviour
     GameObject tmp;
     private void NewMessage()
     {
-        int rand = Random.Range(0, 2);
+        int rand = Random.Range(0, 3);
         if (rand == 0)
         {
 
@@ -125,13 +135,14 @@ public class ChatManager : MonoBehaviour
 
             TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
             string username = messageGenerator.CreateUsername();
-            ; UIText.SetText("<color=" + Randomcolor() + ">"
+            UIText.SetText("<color=" + Randomcolor() + ">"
                 + username.Replace("\n", "").Replace("\r", "")
                 + "</color>" + ": " + messageGenerator.takeFillerMessage());
 
             messages.Insert(0, tmp);
 
         }
+
         if(rand == 1)
         {
             tmp = null;
@@ -145,13 +156,40 @@ public class ChatManager : MonoBehaviour
             QTEScript qTEScript = tmp.GetComponent<QTEScript>();
             string qteInputs = messageGenerator.CreateQTE(qTEScript);
             string username = messageGenerator.CreateUsername();
-            ; UIText.SetText("<color=" + Randomcolor() + ">"
-                + username.Replace("\n", "").Replace("\r", "")
-                + "</color>" + ": " + qteMessages[rando] + " " + String.Join(" ", qteInputs.ToUpper().ToList()));
+            UIText.SetText("<color=" + Randomcolor() + ">"
+                + username.Replace("\n", "").Replace("\r", "") + "</color>" 
+                + ": " + qteMessages[rando] + " " + String.Join(" ", qteInputs.ToUpper().ToList()));
+
+            messages.Insert(0, tmp);
+        }
+
+        if(rand == 2) 
+        {
+            tmp = null;
+            tmp = Instantiate(banPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            tmp.transform.SetParent(transform, false);
+            tmp.transform.localScale = new Vector3(1, 1, 1);
+
+            TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
+            string username = messageGenerator.CreateUsername();
+            UIText.SetText("<color=" + Randomcolor() + ">"
+                + username.Replace("\n", "").Replace("\r", "") + "</color>" 
+                + ": " + "message de haine");
 
             messages.Insert(0, tmp);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
