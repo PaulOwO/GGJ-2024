@@ -22,16 +22,12 @@ public class ChatManager : MonoBehaviour
 
     [SerializeField] MessageGenerator messageGenerator;
 
+    private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        qteMessages.Add("I would LOVE if you could do that for me");
-        qteMessages.Add("PLZ do this");
-        qteMessages.Add("->");
-        qteMessages.Add("");
-        qteMessages.Add("That's crazy but did you consider another choice ? I would love if you do, also do this");
-        qteMessages.Add("I will donate lots of money !!!!!! only if you know :]");
-
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -95,20 +91,31 @@ public class ChatManager : MonoBehaviour
                     if (message.tag == "QTE")
                     {
                         // missed a chat : red
-                        //health loss
+
+                        if (message.GetComponent<QTEScript>().isDone == false)
+                        {
+                            gameManager.drama += 1;
+                            print("missed a qte");
+                        }
 
                         GameObject tmp = message;
                         messages.RemoveAt(i);
                         Destroy(tmp);
+                        return;
+                        
                     }
                     else if (message.tag == "Ban")
                     {
-                        // missed a chat : red
-                        //health loss
+                        if (message.GetComponent<banMessageScript>().isBanned == false)
+                        {
+                            gameManager.drama += 1;
+                            print("missed a ban");
+                        }
 
                         GameObject tmp = message;
                         messages.RemoveAt(i);
                         Destroy(tmp);
+                        return;
                     }
                     else
                     {
@@ -158,7 +165,7 @@ public class ChatManager : MonoBehaviour
             string username = messageGenerator.CreateUsername();
             UIText.SetText("<color=" + Randomcolor() + ">"
                 + username.Replace("\n", "").Replace("\r", "") + "</color>" 
-                + ": " + qteMessages[rando] + " " + String.Join(" ", qteInputs.ToUpper().ToList()));
+                + ": " + messageGenerator.takeQTEMessage().Replace("\n", "").Replace("\r", "")+ " " + String.Join(" ", qteInputs.ToUpper().ToList()));
 
             messages.Insert(0, tmp);
         }
@@ -174,7 +181,7 @@ public class ChatManager : MonoBehaviour
             string username = messageGenerator.CreateUsername();
             UIText.SetText("<color=" + Randomcolor() + ">"
                 + username.Replace("\n", "").Replace("\r", "") + "</color>" 
-                + ": " + "message de haine");
+                + ": " + messageGenerator.takeBanMessage());
 
             messages.Insert(0, tmp);
         }
