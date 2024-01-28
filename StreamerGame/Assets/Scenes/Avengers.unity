@@ -509,6 +509,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1543625473}
     - target: {fileID: 1735315610076627721, guid: 237c5d831e85a70449151e731d357da8, type: 3}
+      propertyPath: chatManager
+      value: 
+      objectReference: {fileID: 672083110}
+    - target: {fileID: 1735315610076627721, guid: 237c5d831e85a70449151e731d357da8, type: 3}
       propertyPath: miniGameManager
       value: 
       objectReference: {fileID: 122227922}

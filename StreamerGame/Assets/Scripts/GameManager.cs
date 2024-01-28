@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI;
     public GameObject miniGameManager;
+    public GameObject chatManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +23,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (drama > 2)
+        /*if (drama > 2)
         {
             miniGameManager.GetComponent<MiniGameManager>().SendMessage("StopAllGames");
+            chatManager.GetComponent<ChatManager>().SendMessage("StopMsgs");
             gameOverUI.SetActive(true);
-        }
+        }*/
 
 
         if (Input.GetKeyDown(KeyCode.F))

@@ -24,7 +24,7 @@ public class ChatManager : MonoBehaviour
 
     public Collider2D area;
 
-    public int viewerCount = 0;
+    public int viewerCount = 100000;
 
     private List<GameObject> messages = new List<GameObject>();
     private List<string> qteMessages = new List<string>();
@@ -49,14 +49,42 @@ public class ChatManager : MonoBehaviour
         StartCoroutine("GetChats");
     }
 
+    void StopMsgs()
+    {
+        StopCoroutine("SendChats");
+        StopCoroutine("GetChats");
+    }
+
     private IEnumerator GetChats()
     {
         for (; ; )
         {
-            messagesToSend = (int)Math.Round((float)((viewerCount/1000000) * 10));
-            print(viewerCount + " -- " + messagesToSend);
-            timeRemaining = 5f;
+            StopCoroutine("SendChats");
+            if (viewerCount < 500000)
+            {
+                messagesToSend = (int)Math.Ceiling((decimal)((decimal)(viewerCount / 500000d) * 5));
+            }
+            else
+            {
+                messagesToSend = 10;
+            }
+            startSending(5f / messagesToSend);
             yield return new WaitForSeconds(5f);
+        }
+    }
+
+    void startSending(float sendInterval)
+    {
+        StartCoroutine("SendChats", sendInterval);
+    }
+
+    private IEnumerator SendChats(float timeBetweenMessages)
+    {
+        for (; ; )
+        {
+            NewMessage();
+            UpdateChat();
+            yield return new WaitForSeconds(timeBetweenMessages);
         }
     }
 
@@ -193,10 +221,9 @@ public class ChatManager : MonoBehaviour
     GameObject tmp;
     private void NewMessage()
     {
-        int rand = Random.Range(0, 10);
+        int rand = UnityEngine.Random.Range(0, 10);
         if (rand < 7 )
         {
-
             tmp = null;
             tmp = Instantiate(MessagePrefab, new Vector3(0, 0, 0), Quaternion.identity);
             tmp.transform.SetParent(transform, false);
@@ -204,6 +231,7 @@ public class ChatManager : MonoBehaviour
 
             TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
             string username = messageGenerator.CreateUsername();
+
             UIText.SetText("<color=" + Randomcolor() + ">"
                 + username.Replace("\n", "").Replace("\r", "")
                 + "</color>" + ": " + messageGenerator.takeFillerMessage());
@@ -212,14 +240,14 @@ public class ChatManager : MonoBehaviour
 
         }
 
-        if(rand == 7)
+        if (rand == 7)
         {
             tmp = null;
             tmp = Instantiate(QTEPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             tmp.transform.SetParent(transform, false);
             tmp.transform.localScale = new Vector3(1, 1, 1);
 
-            int rando = Random.Range(0, qteMessages.Count);
+            int rando = UnityEngine.Random.Range(0, qteMessages.Count);
 
             TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
             QTEScript qTEScript = tmp.GetComponent<QTEScript>();
@@ -255,7 +283,7 @@ public class ChatManager : MonoBehaviour
             tmp.transform.SetParent(transform, false);
             tmp.transform.localScale = new Vector3(1, 1, 1);
 
-            int randomi = Random.Range(0, 3); //add le fait de ne pas pouvoir tomber sur le jeux actuelle  // serpent, flapy bird, mario
+            int randomi = UnityEngine.Random.Range(0, 3); //add le fait de ne pas pouvoir tomber sur le jeux actuelle  // serpent, flapy bird, mario
             int v;
             if (miniGameManager.currentGame == gameName[0])
             {
@@ -271,7 +299,7 @@ public class ChatManager : MonoBehaviour
             }
             while (randomi == v) 
             {
-                randomi = Random.Range(0, 3);
+                randomi = UnityEngine.Random.Range(0, 3);
             }
 
 
@@ -331,7 +359,7 @@ public class ChatManager : MonoBehaviour
     private string Randomcolor()
     {
         string color = null;
-        int rand = Random.Range(0, 6);
+        int rand = UnityEngine.Random.Range(0, 6);
         if (rand == 0)
         {
             color = "purple";
