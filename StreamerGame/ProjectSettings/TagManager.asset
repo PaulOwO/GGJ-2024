@@ -11,6 +11,7 @@ TagManager:
   - Spike
   - Ban
   - QTE
+  - Change
   layers:
   - Default
   - TransparentFX

@@ -89,11 +89,11 @@ public class MessageGenerator : MonoBehaviour
 
     public string CreateQTE(QTEScript qTEScript)
     {
-        string alphabet = "abcdefghijklmnopqrstuvwxyz";
+        string alphabet = "abcdefghijklmnopqrstuvwxyz123456789";
         string re = null;
         for (int i = 0; i < 3; i++)
         {
-            int rand = UnityEngine.Random.Range(0, 26);
+            int rand = UnityEngine.Random.Range(0, 35);
             qTEScript.inputs.Add(alphabet[rand].ToString());
             re += alphabet[rand].ToString();
         }
