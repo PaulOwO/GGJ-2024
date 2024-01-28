@@ -24,6 +24,8 @@ public class ChatManager : MonoBehaviour
 
     public Collider2D area;
 
+    public int viewerCount = 0;
+
     private List<GameObject> messages = new List<GameObject>();
     private List<string> qteMessages = new List<string>();
 
@@ -33,18 +35,35 @@ public class ChatManager : MonoBehaviour
 
     private List<string> gameName = new List<string>();
 
+    private float timeRemaining;
+
+    private int messagesToSend = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
-        gameName.Add("Jumping Guy");
-        gameName.Add("Fliyng Bird");
         gameName.Add("Long Serpent");
+        gameName.Add("Jumping Guy");
+        gameName.Add("Flying Bird");
+        StartCoroutine("GetChats");
+    }
+
+    private IEnumerator GetChats()
+    {
+        for (; ; )
+        {
+            messagesToSend = (int)Math.Round((float)((viewerCount/1000000) * 10));
+            print(viewerCount + " -- " + messagesToSend);
+            timeRemaining = 5f;
+            yield return new WaitForSeconds(5f);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        viewerCount += 10;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             NewMessage();
@@ -128,7 +147,7 @@ public class ChatManager : MonoBehaviour
                         }
 
                         GameObject tmp = message;
-                        messages.RemoveAt(i);
+                        messages.Remove(message);
                         Destroy(tmp);
                         return;
                         
@@ -142,7 +161,7 @@ public class ChatManager : MonoBehaviour
                         }
 
                         GameObject tmp = message;
-                        messages.RemoveAt(i);
+                        messages.Remove(message);
                         Destroy(tmp);
                         return;
                     }
@@ -151,7 +170,7 @@ public class ChatManager : MonoBehaviour
                         if (miniGameManager.currentGame == message.GetComponent<ChangeMessageScript>().game) //l'objectif nest pas accompli
                         {
                             GameObject tmp = message;
-                            messages.RemoveAt(i);
+                            messages.Remove(message);
                             Destroy(tmp);
                             return;
                         }
