@@ -22,6 +22,8 @@ public class ChatManager : MonoBehaviour
 
     public int followers = 1;
 
+    public Collider2D area;
+
     private List<GameObject> messages = new List<GameObject>();
     private List<string> qteMessages = new List<string>();
 
@@ -115,7 +117,7 @@ public class ChatManager : MonoBehaviour
                     message.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, (float)message.GetComponent<TextMeshProUGUI>().preferredHeight / 2);
                 }
 
-                if (i > 10) //destruction when to much
+                if (!area.bounds.Contains(message.transform.position)) //destruction when out of range
                 {
                     if (message.tag == "QTE")
                     {
@@ -164,7 +166,7 @@ public class ChatManager : MonoBehaviour
                     else
                     {
                         GameObject tmp = message;
-                        messages.RemoveAt(i);
+                        messages.Remove(message);
                         Destroy(tmp);
                     }
                 }

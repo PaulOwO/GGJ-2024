@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8471566313570250013, guid: ca37d9d3fa959ca4190e7f692d251865, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -2
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 8471566313570250013, guid: ca37d9d3fa959ca4190e7f692d251865, type: 3}
       propertyPath: m_SizeDelta.y
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8471566313570250013, guid: ca37d9d3fa959ca4190e7f692d251865, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8471566313570250013, guid: ca37d9d3fa959ca4190e7f692d251865, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -121,3 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4375bc15d848c4aaf1caea6125d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBanned: 0
