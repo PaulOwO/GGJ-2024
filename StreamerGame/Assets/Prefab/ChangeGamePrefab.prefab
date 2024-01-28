@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChangeGamePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1431637803082044309, guid: ca37d9d3fa959ca4190e7f692d251865, type: 3}
+      propertyPath: m_TagString
+      value: Change
+      objectReference: {fileID: 0}
     - target: {fileID: 8471566313570250013, guid: ca37d9d3fa959ca4190e7f692d251865, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
