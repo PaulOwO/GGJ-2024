@@ -6,7 +6,6 @@ public class MiniGameManager : MonoBehaviour
 {
     public List<GameObject> miniGames;
     public string currentGame = "";
-    private bool snakeStarted = false;
     public List<AudioClip> audioClipList;
 
     AudioSource audioSource;
@@ -19,7 +18,6 @@ public class MiniGameManager : MonoBehaviour
         }
         miniGames[0].gameObject.SetActive(true);
         currentGame = miniGames[0].name;
-        snakeStarted = true;
 
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = audioClipList[0];

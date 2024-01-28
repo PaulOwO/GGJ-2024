@@ -109,6 +109,21 @@ public class ChatManager : MonoBehaviour
                     text.outlineColor = Color.green;
                 }
             }
+            if (message != null && message.tag == "Change")
+            {
+                if (message.GetComponent<ChangeMessageScript>().isDone)
+                {
+                    if (!message.GetComponent<ChangeMessageScript>().pointsAwarded)
+                    {
+                        chatManager = GameObject.FindObjectOfType<ChatManager>();
+                        chatManager.viewerCount = (int)Math.Round((float)chatManager.viewerCount * 1.1f);
+                        message.GetComponent<ChangeMessageScript>().pointsAwarded = true;
+                    }
+                    TextMeshProUGUI text = message.GetComponent<TextMeshProUGUI>();
+                    text.outlineWidth = 0.2f;
+                    text.outlineColor = Color.green;
+                }
+            }
 
         }
 
@@ -196,17 +211,14 @@ public class ChatManager : MonoBehaviour
                     }
                     else if (message.tag == "Change")
                     {
-                        if (miniGameManager.currentGame == message.GetComponent<ChangeMessageScript>().game) //l'objectif nest pas accompli
+                        if (!message.GetComponent<ChangeMessageScript>().isDone) //l'objectif nest pas accompli
                         {
                             GameObject tmp = message;
                             messages.Remove(message);
                             Destroy(tmp);
                             return;
                         }
-
                         gameManager.drama += 1;
-
-
                     }
                     else
                     {
@@ -310,6 +322,7 @@ public class ChatManager : MonoBehaviour
                 + ": " + messageGenerator.takeChangeMessage().Replace("\n", "").Replace("\r", "") + " " + gameString);
 
             tmp.GetComponent<ChangeMessageScript>().game = gameString;
+            tmp.GetComponent<ChangeMessageScript>().miniGameManager = miniGameManager;
             messages.Insert(0, tmp);
         }
     }
