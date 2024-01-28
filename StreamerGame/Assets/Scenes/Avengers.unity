@@ -486,6 +486,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 672083112}
     - target: {fileID: 4051908635188555262, guid: 2394ae640e54a3f489c56c49a9117098, type: 3}
+      propertyPath: viewerCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051908635188555262, guid: 2394ae640e54a3f489c56c49a9117098, type: 3}
       propertyPath: miniGameManager
       value: 
       objectReference: {fileID: 122227923}
@@ -1720,6 +1724,14 @@ PrefabInstance:
     - target: {fileID: 5808808654235158118, guid: 46a701f797509034b91b4fdd366453dd, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250053774386495711, guid: 46a701f797509034b91b4fdd366453dd, type: 3}
+      propertyPath: m_Size.x
+      value: 55.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250053774386495711, guid: 46a701f797509034b91b4fdd366453dd, type: 3}
+      propertyPath: m_Size.y
+      value: 30.5
       objectReference: {fileID: 0}
     - target: {fileID: 7855405740080615592, guid: 46a701f797509034b91b4fdd366453dd, type: 3}
       propertyPath: m_LocalPosition.x
