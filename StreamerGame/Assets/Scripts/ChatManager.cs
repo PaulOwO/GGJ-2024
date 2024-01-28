@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using TMPro;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -17,6 +16,8 @@ public class ChatManager : MonoBehaviour
     public GameObject QTEPrefab;
     public GameObject banPrefab;
     public GameObject changeGamePrefab;
+
+    public int followers = 1;
 
     private List<GameObject> messages = new List<GameObject>();
     private List<string> qteMessages = new List<string>();
@@ -45,6 +46,7 @@ public class ChatManager : MonoBehaviour
             UpdateChat();
         }
 
+
         foreach (GameObject message in messages.ToList())
         {
             if (message.tag == "QTE")
@@ -59,6 +61,24 @@ public class ChatManager : MonoBehaviour
             }
 
         }
+    }
+
+    float tt = 0.0f;
+    private void CreateChat()
+    {
+        tt += Time.deltaTime;
+        if (tt > 1.0f)
+        {
+            tt = 0.0f;
+            ProbabilityOfMessage();
+        }
+    }
+
+    private void ProbabilityOfMessage()
+    {
+
+
+        throw new NotImplementedException();
     }
 
     private void UpdateChat()
@@ -85,7 +105,7 @@ public class ChatManager : MonoBehaviour
                 {
                     RectTransform transform = message.GetComponent<RectTransform>();
                     currentheight = transform.anchoredPosition.y;
-                    transform.anchoredPosition = new Vector2(0, currentheight + messages[0].GetComponent<TextMeshProUGUI>().preferredHeight);
+                    transform.anchoredPosition = new Vector2(0, currentheight + 10 + messages[0].GetComponent<TextMeshProUGUI>().preferredHeight);
                 }
                 else
                 {
@@ -150,8 +170,8 @@ public class ChatManager : MonoBehaviour
     GameObject tmp;
     private void NewMessage()
     {
-        int rand = Random.Range(0, 4);
-        if (rand == 0)
+        int rand = Random.Range(0, 10);
+        if (rand < 7 )
         {
 
             tmp = null;
@@ -169,7 +189,7 @@ public class ChatManager : MonoBehaviour
 
         }
 
-        if(rand == 1)
+        if(rand == 7)
         {
             tmp = null;
             tmp = Instantiate(QTEPrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -189,7 +209,7 @@ public class ChatManager : MonoBehaviour
             messages.Insert(0, tmp);
         }
 
-        if(rand == 2) 
+        if(rand == 8) 
         {
             tmp = null;
             tmp = Instantiate(banPrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -205,7 +225,7 @@ public class ChatManager : MonoBehaviour
             messages.Insert(0, tmp);
         }
 
-        if (rand == 3)
+        if (rand == 9)
         {
             tmp = null;
             tmp = Instantiate(changeGamePrefab, new Vector3(0, 0, 0), Quaternion.identity);
