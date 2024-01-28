@@ -5,7 +5,7 @@ using UnityEngine;
 public class MiniGameManager : MonoBehaviour
 {
     public List<GameObject> miniGames;
-    public string currentGame = ""; 
+    public string currentGame = "";
     private bool snakeStarted = false;
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,7 @@ public class MiniGameManager : MonoBehaviour
         }
         miniGames[0].gameObject.SetActive(true);
         currentGame = miniGames[0].name;
+        snakeStarted = true;
     }
 
     void StopAllGames()
@@ -34,12 +35,7 @@ public class MiniGameManager : MonoBehaviour
             currentGame = miniGames[0].name;
             miniGames[1].gameObject.SetActive(false);
             miniGames[2].gameObject.SetActive(false);
-
-            if (snakeStarted)
-            {
-                miniGames[0].transform.GetChild(0).GetComponent<snakeScript>().SendMessage("OnRestart");
-            }
-            snakeStarted = true;
+            miniGames[0].transform.GetChild(0).GetComponent<snakeScript>().SendMessage("OnRestart");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && currentGame != miniGames[1].name)
         {
