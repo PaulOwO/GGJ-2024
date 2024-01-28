@@ -8,6 +8,10 @@ public class pipeScript : MonoBehaviour
     public float x = 24;
     private float y = 5;
     public float pipeSpeed = 0.01f;
+    ChatManager chatManager;
+
+    private bool hasGivenPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +21,23 @@ public class pipeScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(this.transform.position.x <= -28)
+        if(this.transform.position.x <= -11 && !hasGivenPoints)
         {
-            resetPipe() ;
+            chatManager = GameObject.FindObjectOfType<ChatManager>();
+            chatManager.viewerCount += 10;
+            hasGivenPoints = true;
+
+        }
+        if(this.transform.position.x <= -28)
+            {
+            resetPipe();
         }
         movePipe();
     }
 
     void resetPipe()
     {
+        hasGivenPoints = false;
         y = Random.Range(-2, 15);
         this.transform.position = new Vector2(26, y);
     }
@@ -39,6 +51,7 @@ public class pipeScript : MonoBehaviour
 
     void StartReset()
     {
+        hasGivenPoints = false;
         y = Random.Range(-2, 15);
         this.transform.position = new Vector2(x, y);
     }

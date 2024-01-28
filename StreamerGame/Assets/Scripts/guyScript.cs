@@ -14,6 +14,7 @@ public class guyScript : MonoBehaviour
     public List<GameObject> spikes;
     private Vector3 lastVelocity;
     private bool played;
+    ChatManager chatManager;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,15 @@ public class guyScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Spike")
         {
+            chatManager = GameObject.FindObjectOfType<ChatManager>();
+            if (chatManager.viewerCount > 5)
+            {
+                chatManager.viewerCount -= 5;
+            }
+            else
+            {
+                chatManager.viewerCount = 1;
+            }
             this.transform.position = basePos;
             this.transform.rotation = baseRotation;
             rigidbody.velocity = new Vector3(0f, 0f, 0f);

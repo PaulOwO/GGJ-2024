@@ -7,6 +7,7 @@ public class birdScript : MonoBehaviour
     public Rigidbody2D rigidBody;
     public int jumpVelocity = 15;
     public List<GameObject> Pipes;
+    ChatManager chatManager;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,15 @@ public class birdScript : MonoBehaviour
         transform.position = Vector2.zero;
         transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         rigidBody.velocity = new Vector2(0, 0);
+        chatManager = GameObject.FindObjectOfType<ChatManager>();
+        if (chatManager.viewerCount > 5)
+        {
+            chatManager.viewerCount -= 5;
+        }
+        else
+        {
+            chatManager.viewerCount = 1;
+        }
         OnRestart();
     }
 

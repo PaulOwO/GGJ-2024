@@ -10,6 +10,7 @@ public class snakeScript : MonoBehaviour
     private List<Transform> _parts = new List<Transform>();
     public Transform bodyPrefab;
     public Transform holder;
+    ChatManager chatManager;
 
     void Start()
     {
@@ -69,9 +70,11 @@ public class snakeScript : MonoBehaviour
 
     private void Eat()
     {
-        Transform part = Instantiate(this.bodyPrefab,holder);
+        Transform part = Instantiate(this.bodyPrefab, holder);
         part.position = _parts[_parts.Count - 1].position;
         _parts.Add(part);
+        chatManager = GameObject.FindObjectOfType<ChatManager>();
+        chatManager.viewerCount += 10;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,13 +85,21 @@ public class snakeScript : MonoBehaviour
         }
         else if ((collision.tag == "Tail" && collision.gameObject.transform != _parts[1]) || collision.tag == "Wall")
         {
+            chatManager = GameObject.FindObjectOfType<ChatManager>();
+            if (chatManager.viewerCount > 5)
+            {
+                chatManager.viewerCount -= 5;
+            } else
+            {
+                chatManager.viewerCount = 1;
+            }
             Clear();
         }
     }
 
     private void Clear()
     {
-        if( _parts.Count > 0 )
+        if (_parts.Count > 0)
         {
             for (int i = 1; i < _parts.Count; i++)
             {

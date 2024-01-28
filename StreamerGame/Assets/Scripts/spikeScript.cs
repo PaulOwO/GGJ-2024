@@ -10,6 +10,7 @@ public class spikeScript : MonoBehaviour
     public List<Transform> spikePrefab;
     public Transform holder;
     public GameObject guy;
+    ChatManager chatManager;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,8 @@ public class spikeScript : MonoBehaviour
     {
         if (this.transform.position.x <= (-28 - this.GetComponent<PolygonCollider2D>().bounds.size.x))
         {
+            chatManager = GameObject.FindObjectOfType<ChatManager>();
+            chatManager.viewerCount += 10;
             newSpike();
         }
         moveSpike();
