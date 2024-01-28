@@ -16,7 +16,7 @@ public class GameOverUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("PaulScene");
+            SceneManager.LoadScene("Avengers");
         }
     }
 }
