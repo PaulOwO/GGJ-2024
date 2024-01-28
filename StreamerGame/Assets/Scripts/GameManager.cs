@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI;
+    public GameObject miniGameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +18,13 @@ public class GameManager : MonoBehaviour
 
     Array array;
     int numberOfBan = 0;
+
     // Update is called once per frame
     void Update()
     {
         if (drama > 2)
         {
-            //game over
+            miniGameManager.GetComponent<MiniGameManager>().SendMessage("StopAllGames");
             gameOverUI.SetActive(true);
         }
 

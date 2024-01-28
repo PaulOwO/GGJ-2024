@@ -14,6 +14,15 @@ public class MiniGameManager : MonoBehaviour
         {
             game.gameObject.SetActive(false);
         }
+        miniGames[0].gameObject.SetActive(true);
+        currentGame = miniGames[0].name;
+    }
+
+    void StopAllGames()
+    {
+        miniGames[0].gameObject.SetActive(false);
+        miniGames[1].gameObject.SetActive(false);
+        miniGames[2].gameObject.SetActive(false);
     }
 
     // Update is called once per frame

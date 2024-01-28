@@ -54,7 +54,7 @@ public class ChatManager : MonoBehaviour
 
         foreach (GameObject message in messages.ToList())
         {
-            if (message.tag == "QTE")
+            if (message != null && message.tag == "QTE")
             {
                 if (message.GetComponent<QTEScript>().isDone)
                 {
@@ -81,8 +81,6 @@ public class ChatManager : MonoBehaviour
 
     private void ProbabilityOfMessage()
     {
-
-
         throw new NotImplementedException();
     }
 
@@ -165,9 +163,8 @@ public class ChatManager : MonoBehaviour
                     }
                     else
                     {
-                        GameObject tmp = message;
                         messages.Remove(message);
-                        Destroy(tmp);
+                        Destroy(message);
                     }
                 }
                 i++;
