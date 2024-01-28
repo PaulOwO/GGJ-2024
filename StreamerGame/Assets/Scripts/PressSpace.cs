@@ -29,7 +29,7 @@ public class PressSpace : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && spacePress == 3)
         {
-            SceneManager.LoadScene("PaulScene");
+            SceneManager.LoadScene("Avengers");
         }
         if (Input.GetKeyDown(KeyCode.Space) && spacePress == 2)
         {

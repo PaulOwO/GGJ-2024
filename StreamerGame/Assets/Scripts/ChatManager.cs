@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using static GameManager;
+using UnityEngine.SceneManagement;
 
 public class ChatManager : MonoBehaviour
 {
@@ -109,6 +110,11 @@ public class ChatManager : MonoBehaviour
                 }
             }
 
+        }
+
+        if(viewerCount>=1000000) 
+        {
+            SceneManager.LoadScene("EndScene");
         }
     }
 
