@@ -11,6 +11,7 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using static GameManager;
 using UnityEngine.SceneManagement;
+using System.Reflection;
 
 public class ChatManager : MonoBehaviour
 {
@@ -111,7 +112,7 @@ public class ChatManager : MonoBehaviour
 
         }
 
-        if(viewerCount>=1000000) 
+        if (viewerCount >= 1000000)
         {
             SceneManager.LoadScene("EndScene");
         }
@@ -173,21 +174,19 @@ public class ChatManager : MonoBehaviour
                         if (message.GetComponent<QTEScript>().isDone == false)
                         {
                             gameManager.drama += 1;
-                            print("missed a qte");
                         }
 
                         GameObject tmp = message;
                         messages.Remove(message);
                         Destroy(tmp);
                         return;
-                        
+
                     }
                     else if (message.tag == "Ban")
                     {
                         if (message.GetComponent<banMessageScript>().isBanned == false)
                         {
                             gameManager.drama += 1;
-                            print("missed a ban");
                         }
 
                         GameObject tmp = message;
@@ -206,9 +205,8 @@ public class ChatManager : MonoBehaviour
                         }
 
                         gameManager.drama += 1;
-                        print("didn't change the game");
 
-                       
+
                     }
                     else
                     {
@@ -224,7 +222,7 @@ public class ChatManager : MonoBehaviour
     private void NewMessage()
     {
         int rand = UnityEngine.Random.Range(0, 10);
-        if (rand < 7 )
+        if (rand < 7)
         {
             tmp = null;
             tmp = Instantiate(MessagePrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -256,13 +254,13 @@ public class ChatManager : MonoBehaviour
             string qteInputs = messageGenerator.CreateQTE(qTEScript);
             string username = messageGenerator.CreateUsername();
             UIText.SetText("<color=" + Randomcolor() + ">"
-                + username.Replace("\n", "").Replace("\r", "") + "</color>" 
-                + ": " + messageGenerator.takeQTEMessage().Replace("\n", "").Replace("\r", "")+ " " + String.Join(" ", qteInputs.ToUpper().ToList()));
+                + username.Replace("\n", "").Replace("\r", "") + "</color>"
+                + ": " + messageGenerator.takeQTEMessage().Replace("\n", "").Replace("\r", "") + " " + String.Join(" ", qteInputs.ToUpper().ToList()));
 
             messages.Insert(0, tmp);
         }
 
-        if(rand == 8) 
+        if (rand == 8)
         {
             tmp = null;
             tmp = Instantiate(banPrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -272,7 +270,7 @@ public class ChatManager : MonoBehaviour
             TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
             string username = messageGenerator.CreateUsername();
             UIText.SetText("<color=" + Randomcolor() + ">"
-                + username.Replace("\n", "").Replace("\r", "") + "</color>" 
+                + username.Replace("\n", "").Replace("\r", "") + "</color>"
                 + ": " + messageGenerator.takeBanMessage());
 
             messages.Insert(0, tmp);
@@ -285,33 +283,33 @@ public class ChatManager : MonoBehaviour
             tmp.transform.SetParent(transform, false);
             tmp.transform.localScale = new Vector3(1, 1, 1);
 
-            int randomi = UnityEngine.Random.Range(0, 3); //add le fait de ne pas pouvoir tomber sur le jeux actuelle  // serpent, flapy bird, mario
-            int v;
-            if (miniGameManager.currentGame == gameName[0])
+
+            string gameString = "";
+            do
             {
-                v = 0;
-            }
-            if (miniGameManager.currentGame == gameName[1])
-            {
-                v = 1;
-            }
-            else
-            {
-                v = 2;
-            }
-            while (randomi == v) 
-            {
-                randomi = UnityEngine.Random.Range(0, 3);
-            }
+                int randomi = UnityEngine.Random.Range(0, 3);
+                switch (randomi)
+                {
+                    case 0:
+                        gameString = "Long Serpent";
+                        break;
+                    case 1:
+                        gameString = "Flying Bird";
+                        break;
+                    case 2:
+                        gameString = "Jumping Guy";
+                        break;
+                }
+            } while (gameString == miniGameManager.currentGame) ;
 
 
-            TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI UIText = tmp.GetComponent<TextMeshProUGUI>();
             string username = messageGenerator.CreateUsername();
             UIText.SetText("<color=" + Randomcolor() + ">"
                 + username.Replace("\n", "").Replace("\r", "") + "</color>"
-                + ": " + messageGenerator.takeChangeMessage().Replace("\n", "").Replace("\r", "")+ " " + gameName[randomi]) ;
+                + ": " + messageGenerator.takeChangeMessage().Replace("\n", "").Replace("\r", "") + " " + gameString);
 
-            tmp.GetComponent<ChangeMessageScript>().game = gameName[randomi];
+            tmp.GetComponent<ChangeMessageScript>().game = gameString;
             messages.Insert(0, tmp);
         }
     }
